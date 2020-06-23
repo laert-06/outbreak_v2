@@ -8,13 +8,14 @@ public class GameBoard {
     private Paddle user;
     private Boolean isRunning;
     private List<Building> buildings;
+    private List<Person> Persons;
 
     private int ApartmentHeight, ApartmentWidth, MedicalHeight, MedicalWidth;
 
 
     public GameBoard() {
         this.user = new Paddle(200, 500);
-        isRunning = true;
+        isRunning = false;
         buildings = new ArrayList<>();
 
         ApartmentHeight = 30;

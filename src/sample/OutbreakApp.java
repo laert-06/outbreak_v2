@@ -10,18 +10,14 @@ public class OutbreakApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        /*Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();*
-
-         */
 
         GameUI ui= new GameUI();
         Scene scene= new Scene(ui,600,700);
         primaryStage.setScene(scene);
         primaryStage.show();
-        ui.draw();
+        ui.drawStart();
+
+
     }
 
     public static void startApp(String[] args) {

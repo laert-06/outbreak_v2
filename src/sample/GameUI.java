@@ -1,8 +1,11 @@
 package sample;
 
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -10,43 +13,52 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 
 
+public class GameUI extends VBox {
 
-public class GameUI extends VBox implements Runnable {
-
-    private Button start;
-    private Button stop;
     private Canvas canvas;
     private GraphicsContext g;
     private GameBoard board;
-    private Thread thread;
+    private Timeline timeline;
 
 
     public GameUI() {
-        this.start = new Button("Start");
-        this.start.setOnAction(e -> startGame());
-        this.stop = new Button("Stop");
-        this.stop.setOnAction(e -> stopGame());
+        InfoBar infoBar = new InfoBar();
+        Toolbar toolbar = new Toolbar(this);
+
         this.canvas = new Canvas(600, 600);
         g = this.canvas.getGraphicsContext2D();
-        this.getChildren().addAll(start, stop, canvas);
+        this.getChildren().addAll(toolbar, canvas, infoBar);
         board = new GameBoard();
-        this.addEventHandler(KeyEvent.KEY_PRESSED,new EventHandler<KeyEvent>(){
+        this.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent keyEvent) {
-                if(keyEvent.getCode()== KeyCode.A){
-                    if(board.getPaddle().getX()>=0) board.getPaddle().moveLeft();
+                if(board.isRunning()) {
+                    if (keyEvent.getCode() == KeyCode.A) {
+                        if (board.getPaddle().getX() >= 5) board.getPaddle().moveLeft();
+                    }
+                    if (keyEvent.getCode() == KeyCode.D) {
+                        if (board.getPaddle().getX() + board.getPaddle().getWidth() <= 595)
+                            board.getPaddle().moveRight();
+                    }
                 }
-                if(keyEvent.getCode()== KeyCode.D){
-                    if(board.getPaddle().getX()+board.getPaddle().getWidth()<=600) board.getPaddle().moveRight();
-                }
-
-                draw();
             }
         });
+
+        this.timeline=new Timeline(new KeyFrame(Duration.millis(1000/30),e->this.draw()));
+        this.timeline.setCycleCount(Timeline.INDEFINITE);
+
+
+
     }
+
+
 
     public void draw() {
         g.setFill(Color.BLACK);
@@ -56,14 +68,11 @@ public class GameUI extends VBox implements Runnable {
 
     }
 
-    public void drawBuilding(){
-        for (Building b:board.getBuildings()) {
-
-            if(b instanceof Apartment)g.setFill(Color.PURPLE);
+    public void drawBuilding() {
+        for (Building b : board.getBuildings()) {
+            if (b instanceof Apartment) g.setFill(Color.PURPLE);
             else g.setFill(Color.RED);
-
-            g.fillRect(b.getX(),b.getY(),b.getWidth(),b.getHeight());
-
+            g.fillRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
         }
 
     }
@@ -75,44 +84,36 @@ public class GameUI extends VBox implements Runnable {
     }
 
     public void startGame() {
-
+        if (!this.board.isRunning()) {
             this.board.start();
-            /*this.thread = new Thread(this);
-            this.thread.start();
-            draw();*/
+            timeline.play();
 
-
-        while(this.board.isRunning()){
-            board.update();
-            draw();
-        }try {
-            Thread.sleep(1000); // milliseconds
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
         }
 
-
-
     }
+    public void drawStart(){
+        g.setFill(Color.WHITE);
+        g.fillRect(0, 0, 600, 600);
+        g.setFill(Color.BLACK);
+        g.setTextAlign(TextAlignment.CENTER);
+        g.setTextBaseline(VPos.CENTER);
+        g.setFont(Font.font( "Helvetica",FontWeight.BOLD,50));
+        g.fillText("Corona Outbreak",Math.round(canvas.getWidth()  / 2),
+                Math.round(canvas.getLayoutY()+100));
+    }
+
 
     public void stopGame() {
-
             this.board.stop();
+            timeline.stop();
             g.setFill(Color.RED);
-            g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            g.setTextAlign(TextAlignment.CENTER);
+            g.setTextBaseline(VPos.CENTER);
+            g.setFont(Font.font(40));
+            g.fillText("Game Stopped",Math.round(canvas.getWidth()  / 2),
+                    Math.round(canvas.getHeight() / 2));
 
     }
-        @Override
-        public void run(){
-            while(this.board.isRunning()){
-                board.update();
-                draw();
-            }try {
-                Thread.sleep(1000); // milliseconds
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        }
 
-        }
+}
 
