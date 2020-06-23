@@ -24,6 +24,7 @@ public class Person {
         this.direction = chance.nextInt();
     }
 
+
     public boolean isOutside() {
         return outside;
     }
