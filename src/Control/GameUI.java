@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -27,6 +28,8 @@ public class GameUI extends VBox {
     private GraphicsContext g;
     private GameBoard board;
     private Timeline timeline;
+    Image home = new Image("file:home.png");
+    Image medicalFacility = new Image("file:medicalFacility.png");
 
 
     public GameUI() {
@@ -68,7 +71,7 @@ public class GameUI extends VBox {
 
 
     public void draw() {
-        g.setFill(Color.BLACK);
+        g.setFill(Color.WHITE);
         g.fillRect(0, 0, 600, 600);
         drawPaddle();
         drawBuilding();
@@ -86,15 +89,15 @@ public class GameUI extends VBox {
 
     public void drawBuilding() {
         for (Building b : board.getBuildings()) {
-            if (b instanceof Apartment) g.setFill(Color.PURPLE);
-            else g.setFill(Color.RED);
+            if (b instanceof Apartment) g.drawImage(home, b.getX(), b.getY());
+            else g.drawImage(medicalFacility, b.getX(), b.getY());
             g.fillRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
         }
 
     }
 
     public void drawPaddle() {
-        g.setFill(Color.BLUE);
+        g.setFill(Color.RED);
         Paddle user = board.getPaddle();
         g.fillRect(user.getX(), user.getY(), user.getWidth(), user.getHeight());
     }
@@ -120,14 +123,14 @@ public class GameUI extends VBox {
 
 
     public void stopGame() {
-            this.board.stop();
-            timeline.stop();
-            g.setFill(Color.RED);
-            g.setTextAlign(TextAlignment.CENTER);
-            g.setTextBaseline(VPos.CENTER);
-            g.setFont(Font.font(40));
-            g.fillText("Game Stopped",Math.round(canvas.getWidth()  / 2),
-                    Math.round(canvas.getHeight() / 2));
+        this.board.stop();
+        timeline.stop();
+        g.setFill(Color.RED);
+        g.setTextAlign(TextAlignment.CENTER);
+        g.setTextBaseline(VPos.CENTER);
+        g.setFont(Font.font(40));
+        g.fillText("Game Stopped",Math.round(canvas.getWidth()  / 2),
+                Math.round(canvas.getHeight() / 2));
 
     }
 
