@@ -16,7 +16,7 @@ public class GameBoard {
 
 
     public GameBoard() {
-        this.user = new Paddle(200, 500);
+        this.user = new Paddle(200, 550);
         isRunning = false;
         buildings = new ArrayList<>();
         persons =new ArrayList<>();

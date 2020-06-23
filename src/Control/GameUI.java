@@ -56,7 +56,7 @@ public class GameUI extends VBox {
             }
         });
 
-        this.timeline=new Timeline(new KeyFrame(Duration.millis(1000/60),e->this.update()));
+        this.timeline=new Timeline(new KeyFrame(Duration.millis(1000/80),e->this.update()));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
 
 
