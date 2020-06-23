@@ -38,7 +38,7 @@ public class Paddle implements Collidable {
 
     @Override
     public void evaluate(Person person) {
-        if(person.getY()<=this.y) person.setDirection(180);
-        else person.setDirection(0);
+
+        person.reflect(this);
     }
 }
