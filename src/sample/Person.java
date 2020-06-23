@@ -25,7 +25,11 @@ public class Person {
         this.direction=chance.nextInt();
     }
 
-    public void move(int maxX,int maxY){
+    public boolean isSick() {
+        return sick;
+    }
+
+    public void move(int maxX, int maxY){
         if(!this.outside)return;
 
         float deltax = this.speed * (float) Math.sin(Math.toRadians(this.direction));

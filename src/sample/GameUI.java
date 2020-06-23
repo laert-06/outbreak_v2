@@ -51,11 +51,16 @@ public class GameUI extends VBox {
             }
         });
 
-        this.timeline=new Timeline(new KeyFrame(Duration.millis(1000/30),e->this.draw()));
+        this.timeline=new Timeline(new KeyFrame(Duration.millis(1000/30),e->this.update()));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
 
 
 
+    }
+
+    public void update(){
+        board.update((int)canvas.getWidth(),(int)canvas.getHeight());
+        draw();
     }
 
 
@@ -65,7 +70,16 @@ public class GameUI extends VBox {
         g.fillRect(0, 0, 600, 600);
         drawPaddle();
         drawBuilding();
+        drawPerson();
 
+    }
+
+    public void drawPerson(){
+        for(Person p: board.getPersons()){
+            if(p.isSick())g.setFill(Color.GREEN);
+            else g.setFill(Color.WHITE);
+            g.fillRect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+        }
     }
 
     public void drawBuilding() {
