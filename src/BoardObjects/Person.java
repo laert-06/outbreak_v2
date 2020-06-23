@@ -41,6 +41,7 @@ public class Person {
         this.x += deltax;
         this.y += deltay;
 
+
         if (this.x < 0) {
             this.x = 0;
 
