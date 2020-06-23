@@ -15,7 +15,6 @@ public class OutbreakApp extends Application {
         primaryStage.show();
         ui.drawStart();
 
-
     }
 
     public static void startApp(String[] args) {
@@ -26,4 +25,5 @@ public class OutbreakApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

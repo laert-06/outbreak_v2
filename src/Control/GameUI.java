@@ -46,11 +46,12 @@ public class GameUI extends VBox {
 
             @Override
             public void handle(KeyEvent keyEvent) {
+                String keyCode = keyEvent.getCharacter();
                 if(board.isRunning()) {
-                    if (keyEvent.getCode() == KeyCode.A) {
+                    if (keyEvent.getCode() == KeyCode.A || keyEvent.getCode() == KeyCode.LEFT) {
                         if (board.getPaddle().getX() >= 5) board.getPaddle().moveLeft();
                     }
-                    if (keyEvent.getCode() == KeyCode.D) {
+                    if (keyEvent.getCode() == KeyCode.D || keyEvent.getCode() == KeyCode.RIGHT) {
                         if (board.getPaddle().getX() + board.getPaddle().getWidth() <= 595)
                             board.getPaddle().moveRight();
                     }
@@ -133,6 +134,7 @@ public class GameUI extends VBox {
     }
 
     public void restartGame() {
+
     }
 
 }
