@@ -22,6 +22,7 @@ public class GameUI extends VBox implements Runnable {
     private GameBoard board;
     private Thread thread;
 
+
     public GameUI() {
         this.start = new Button("Start");
         this.start.setOnAction(e -> startGame());
