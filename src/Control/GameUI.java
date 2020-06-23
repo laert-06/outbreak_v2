@@ -71,7 +71,7 @@ public class GameUI extends VBox {
 
 
     public void draw() {
-        g.setFill(Color.WHITE);
+        g.setFill(Color.GREY);
         g.fillRect(0, 0, 600, 600);
         drawPaddle();
         drawBuilding();
@@ -91,7 +91,7 @@ public class GameUI extends VBox {
         for (Building b : board.getBuildings()) {
             if (b instanceof Apartment) g.drawImage(home, b.getX(), b.getY());
             else g.drawImage(medicalFacility, b.getX(), b.getY());
-            g.fillRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
+            //g.fillRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
         }
 
     }

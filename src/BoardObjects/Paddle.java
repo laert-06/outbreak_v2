@@ -8,7 +8,7 @@ public class Paddle implements Collidable {
     public Paddle(int x,int y){
         this.x=x;
         this.y=y;
-        this.height=30;
+        this.height=10;
         this.width=200;
     }
 
