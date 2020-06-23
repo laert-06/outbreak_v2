@@ -1,4 +1,4 @@
-package sample;
+package Control;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;

@@ -1,4 +1,6 @@
-package sample;
+package Control;
+
+import BoardObjects.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +40,10 @@ public class GameBoard {
         }
     }
 
+
     public void addPersons(){
-        for (int i = 0; i < 8; i++) {
-            persons.add(new Person(i * 100 + 30, 400));
+        for (int i = 0; i < 20; i++) {
+            persons.add(new Person(300, 400));
         }
     }
 
@@ -52,7 +55,28 @@ public class GameBoard {
             x.move(maxX,maxY);
         }
 
+        for (Person x:persons) {
+            if(!x.isOutside())continue;
+
+            for(Building b: buildings){
+               Collision collision=new Collision(b,x);
+               if(collision.isCollision()) {
+                   b.evaluate(x);
+               }
+            }
+            Collision collision=new Collision(user,x);
+            if(collision.isCollision()) {
+                user.evaluate(x);
+            }
+
+
+
+
+        }
     }
+
+
+
 
     public List<Person> getPersons() {
         return persons;

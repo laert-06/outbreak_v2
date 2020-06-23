@@ -1,4 +1,4 @@
-package sample;
+package BoardObjects;
 
 import java.util.Random;
 
@@ -23,6 +23,10 @@ public class Person {
 
         this.speed=5;
         this.direction=chance.nextInt();
+    }
+
+    public boolean isOutside() {
+        return outside;
     }
 
     public boolean isSick() {
@@ -65,6 +69,11 @@ public class Person {
                 this.direction = 360 + this.direction;
             }
         }
+
+    }
+
+    public void setDirection(int x){
+        this.direction=x;
 
     }
 

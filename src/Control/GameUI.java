@@ -1,14 +1,16 @@
-package sample;
+package Control;
 
 
+import BoardObjects.Apartment;
+import BoardObjects.Building;
+import BoardObjects.Paddle;
+import BoardObjects.Person;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -51,7 +53,7 @@ public class GameUI extends VBox {
             }
         });
 
-        this.timeline=new Timeline(new KeyFrame(Duration.millis(1000/30),e->this.update()));
+        this.timeline=new Timeline(new KeyFrame(Duration.millis(1000/60),e->this.update()));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
 
 

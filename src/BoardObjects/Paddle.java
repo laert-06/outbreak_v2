@@ -1,6 +1,6 @@
-package sample;
+package BoardObjects;
 
-public class Paddle {
+public class Paddle implements Collidable {
     private int x;
     private int y;
     private int width,height;
@@ -34,5 +34,11 @@ public class Paddle {
 
     public void moveRight(){
         x+=5;
+    }
+
+    @Override
+    public void evaluate(Person person) {
+        if(person.getY()<=this.y) person.setDirection(180);
+        else person.setDirection(0);
     }
 }
