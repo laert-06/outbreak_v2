@@ -16,7 +16,7 @@ public class GameBoard {
 
 
     public GameBoard() {
-        this.user = new Paddle(200, 550);
+        this.user = new Paddle(200, 750);
         isRunning = false;
         buildings = new ArrayList<>();
         persons =new ArrayList<>();
@@ -24,19 +24,18 @@ public class GameBoard {
 
         ApartmentHeight = 30;
         ApartmentWidth = 30;
-        MedicalHeight = 50;
-        MedicalWidth = 70;
+        MedicalHeight = 30;
+        MedicalWidth = 30;
         addBuildings();
         addPersons();
     }
 
     public void addBuildings() {
-        for (int i = 0; i < 8; i++) {
-            buildings.add(new Apartment(i * 100 + 30, 200, ApartmentWidth, ApartmentHeight));
+        for (int i = 0; i < 6; i++) {
+            buildings.add(new Home(i * 100 + 30, 200, MedicalHeight, MedicalHeight));
         }
-
-        for (int i = 0; i < 5; i++) {
-            buildings.add(new MedicalFacility(i * 100 + 50, 100, MedicalWidth, MedicalHeight));
+        for (double i = 0.5; i < 5; i++) {
+            buildings.add(new MedicalFacility((int) (i * 100 + 30), 100, ApartmentWidth, ApartmentWidth));
         }
     }
 
@@ -51,8 +50,8 @@ public class GameBoard {
 
 
     public void update(int maxX,int maxY){
-        for (Person x:persons) {
-            x.move(maxX,maxY);
+        for (Person p:persons) {
+            p.move(maxX,maxY);
         }
 
         for (Person x:persons) {

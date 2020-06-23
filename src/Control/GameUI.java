@@ -1,7 +1,7 @@
 package Control;
 
 
-import BoardObjects.Apartment;
+import BoardObjects.Home;
 import BoardObjects.Building;
 import BoardObjects.Paddle;
 import BoardObjects.Person;
@@ -28,15 +28,17 @@ public class GameUI extends VBox {
     private GraphicsContext g;
     private GameBoard board;
     private Timeline timeline;
-    Image home = new Image("file:home.png");
-    Image medicalFacility = new Image("file:medicalFacility.png");
+    Image home = new Image("file:images/home.png");
+    Image medicalFacility = new Image("file:images/medicalFacility.png");
+    Image healthyPerson = new Image("file:images/healthyPerson2.png");
+    Image infectedPerson = new Image("file:images/infectedPerson2.png");
 
 
     public GameUI() {
         InfoBar infoBar = new InfoBar();
         Toolbar toolbar = new Toolbar(this);
 
-        this.canvas = new Canvas(600, 600);
+        this.canvas = new Canvas(600, 820);
         g = this.canvas.getGraphicsContext2D();
         this.getChildren().addAll(toolbar, canvas, infoBar);
         board = new GameBoard();
@@ -72,7 +74,7 @@ public class GameUI extends VBox {
 
     public void draw() {
         g.setFill(Color.GREY);
-        g.fillRect(0, 0, 600, 600);
+        g.fillRect(0, 0, 600, 820);
         drawPaddle();
         drawBuilding();
         drawPerson();
@@ -81,17 +83,15 @@ public class GameUI extends VBox {
 
     public void drawPerson(){
         for(Person p: board.getPersons()){
-            if(p.isSick())g.setFill(Color.GREEN);
-            else g.setFill(Color.WHITE);
-            g.fillRect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+            if(p.isSick())g.drawImage(infectedPerson, p.getX(), p.getY());
+            else g.drawImage(healthyPerson, p.getX(), p.getY());
         }
     }
 
     public void drawBuilding() {
         for (Building b : board.getBuildings()) {
-            if (b instanceof Apartment) g.drawImage(home, b.getX(), b.getY());
+            if (b instanceof Home) g.drawImage(home, b.getX(), b.getY());
             else g.drawImage(medicalFacility, b.getX(), b.getY());
-            //g.fillRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
         }
 
     }
@@ -106,13 +106,11 @@ public class GameUI extends VBox {
         if (!this.board.isRunning()) {
             this.board.start();
             timeline.play();
-
         }
-
     }
     public void drawStart(){
         g.setFill(Color.WHITE);
-        g.fillRect(0, 0, 600, 600);
+        g.fillRect(0, 0, 600, 820);
         g.setFill(Color.BLACK);
         g.setTextAlign(TextAlignment.CENTER);
         g.setTextBaseline(VPos.CENTER);
@@ -132,6 +130,9 @@ public class GameUI extends VBox {
         g.fillText("Game Stopped",Math.round(canvas.getWidth()  / 2),
                 Math.round(canvas.getHeight() / 2));
 
+    }
+
+    public void restartGame() {
     }
 
 }

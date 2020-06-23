@@ -10,7 +10,7 @@ public class OutbreakApp extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         GameUI ui= new GameUI();
-        Scene scene= new Scene(ui,600,700);
+        Scene scene= new Scene(ui,600,820);
         primaryStage.setScene(scene);
         primaryStage.show();
         ui.drawStart();

@@ -20,7 +20,7 @@ public class Person {
         else this.sick = false;
         this.outside = true;
 
-        this.speed = 5;
+        this.speed = 2;
         this.direction = chance.nextInt();
     }
 

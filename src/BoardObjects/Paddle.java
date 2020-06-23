@@ -29,16 +29,15 @@ public class Paddle implements Collidable {
     }
 
     public void moveLeft(){
-        x-=5;
+        x-=20;
     }
 
     public void moveRight(){
-        x+=5;
+        x+=20;
     }
 
     @Override
     public void evaluate(Person person) {
-
         person.reflect(this);
     }
 }
