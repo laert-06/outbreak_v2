@@ -41,7 +41,7 @@ public class GameBoard {
 
     public void addPersons(){
         for (int i = 0; i < 20; i++) {
-            persons.add(new Person(300, 400));
+            persons.add(new Person(300, 400, i % 2));
         }
     }
 

@@ -8,20 +8,21 @@ public class Person {
     private boolean sick, outside;
 
 
-    public Person(int x, int y) {
+    public Person(int x, int y, int b) {
         this.x = x;
         this.y = y;
         this.height = 10;
         this.width = 10;
         Random chance = new Random();
-        chance.ints(0, 100);
-
-        if (chance.nextInt() > 30) this.sick = true;
-        else this.sick = false;
+//        chance.ints(0, 100);
+//
+//        if (chance.nextInt() > 30) this.sick = true;
+//        else this.sick = false;
+        this.sick = b == 1 ? true : false;
         this.outside = true;
 
         this.speed = 2;
-        this.direction = chance.nextInt();
+        this.direction = chance.nextInt() % 360;
     }
 
 

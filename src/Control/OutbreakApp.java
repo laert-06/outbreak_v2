@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class OutbreakApp extends Application {
 
     @Override
@@ -24,6 +26,12 @@ public class OutbreakApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+//        Random chance = new Random();
+//        System.out.println(chance.nextInt());
+//        Random chance2 = new Random();
+//        System.out.println(chance2.nextInt());
+//        Random chance3 = new Random();
+//        System.out.println(chance3.nextInt());
     }
 
     public static void restart() {
