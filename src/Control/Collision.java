@@ -14,8 +14,10 @@ public class Collision {
     }
 
     public boolean isCollision() {
-        if (object.getY() + object.getHeight() < person.getY() ||object.getY()>person.getY()+person.getHeight())return false;
-        return !(object.getX() + object.getWidth() < person.getX()) && !(object.getX() > person.getX() + person.getWidth());
+        if (object.getY() + object.getHeight() < person.getY() ||
+                object.getY()>person.getY()+person.getHeight()) return false;
+        return !(object.getX() + object.getWidth() < person.getX()) &&
+                !(object.getX() > person.getX() + person.getWidth());
     }
 
 

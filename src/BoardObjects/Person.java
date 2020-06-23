@@ -81,13 +81,13 @@ public class Person {
     public void reflect(Collidable c) {
         //unten
         if (c.getY() < this.y) {
-            this.direction = 180 - this.direction;
+            this.direction = 270 - this.direction;
             if (this.direction < 0) {
                 this.direction = 360 + this.direction;
             }
         }
         if(c.getY()+c.getHeight()>this.y+this.getHeight()){
-            this.direction = 180 - this.direction;
+            this.direction = 270 - this.direction;
             if (this.direction < 0) {
                 this.direction = 360 + this.direction;
             }

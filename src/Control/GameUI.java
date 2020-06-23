@@ -16,6 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
@@ -98,7 +99,7 @@ public class GameUI extends VBox {
     }
 
     public void drawPaddle() {
-        g.setFill(Color.RED);
+        g.setFill(Color.DARKRED);
         Paddle user = board.getPaddle();
         g.fillRect(user.getX(), user.getY(), user.getWidth(), user.getHeight());
     }
@@ -130,11 +131,10 @@ public class GameUI extends VBox {
         g.setFont(Font.font(40));
         g.fillText("Game Stopped",Math.round(canvas.getWidth()  / 2),
                 Math.round(canvas.getHeight() / 2));
-
     }
 
     public void restartGame() {
-
+        
     }
 
 }

@@ -16,11 +16,10 @@ public class GameBoard {
 
 
     public GameBoard() {
-        this.user = new Paddle(200, 750);
+        this.user = new Paddle(200, 800);
         isRunning = false;
         buildings = new ArrayList<>();
         persons =new ArrayList<>();
-
 
         ApartmentHeight = 30;
         ApartmentWidth = 30;
@@ -47,8 +46,6 @@ public class GameBoard {
     }
 
 
-
-
     public void update(int maxX,int maxY){
         for (Person p:persons) {
             p.move(maxX,maxY);
@@ -67,9 +64,6 @@ public class GameBoard {
             if(collision.isCollision()) {
                 user.evaluate(x);
             }
-
-
-
 
         }
     }
@@ -91,10 +85,10 @@ public class GameBoard {
 
     public void start(){
         isRunning=true;
-
     }
+
     public void stop(){
-    isRunning=false;
+        isRunning=false;
     }
 
     public Boolean isRunning() {

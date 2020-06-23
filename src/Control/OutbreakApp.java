@@ -9,7 +9,7 @@ public class OutbreakApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        GameUI ui= new GameUI();
+        GameUI ui = new GameUI();
         Scene scene= new Scene(ui,600,820);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -24,6 +24,10 @@ public class OutbreakApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static void restart() {
+
     }
 
 }
