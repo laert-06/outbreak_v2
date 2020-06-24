@@ -7,6 +7,7 @@ import BoardObjects.Paddle;
 import BoardObjects.Person;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
@@ -16,7 +17,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
@@ -29,17 +29,22 @@ public class GameUI extends VBox {
     private GraphicsContext g;
     private GameBoard board;
     private Timeline timeline;
+    static int canvasWidth = 840;
+    static int canvasHeight = 900;
+
+
     Image home = new Image("file:images/home.png");
     Image medicalFacility = new Image("file:images/medicalFacility.png");
-    Image healthyPerson = new Image("file:images/healthyPerson2.png");
-    Image infectedPerson = new Image("file:images/infectedPerson2.png");
+    Image healthyPerson = new Image("file:images/healthyPerson.png");
+    Image infectedPerson = new Image("file:images/infectedPerson.png");
+    Image coronaOutbreak = new Image("file:images/coronaOutbreak.jpeg");
 
 
     public GameUI() {
         InfoBar infoBar = new InfoBar();
         Toolbar toolbar = new Toolbar(this);
 
-        this.canvas = new Canvas(600, 820);
+        this.canvas = new Canvas(canvasWidth, canvasHeight);
         g = this.canvas.getGraphicsContext2D();
         this.getChildren().addAll(toolbar, canvas, infoBar);
         board = new GameBoard();
@@ -53,7 +58,7 @@ public class GameUI extends VBox {
                         if (board.getPaddle().getX() >= 5) board.getPaddle().moveLeft();
                     }
                     if (keyEvent.getCode() == KeyCode.D || keyEvent.getCode() == KeyCode.RIGHT) {
-                        if (board.getPaddle().getX() + board.getPaddle().getWidth() <= 595)
+                        if (board.getPaddle().getX() + board.getPaddle().getWidth() <= canvasWidth - 5)
                             board.getPaddle().moveRight();
                     }
                 }
@@ -75,8 +80,8 @@ public class GameUI extends VBox {
 
 
     public void draw() {
-        g.setFill(Color.GREY);
-        g.fillRect(0, 0, 600, 820);
+        g.setFill(Color.BLACK);
+        g.fillRect(0, 0, canvasWidth, canvasHeight);
         drawPaddle();
         drawBuilding();
         drawPerson();
@@ -111,30 +116,41 @@ public class GameUI extends VBox {
         }
     }
     public void drawStart(){
-        g.setFill(Color.WHITE);
-        g.fillRect(0, 0, 600, 820);
-        g.setFill(Color.BLACK);
-        g.setTextAlign(TextAlignment.CENTER);
-        g.setTextBaseline(VPos.CENTER);
-        g.setFont(Font.font( "Helvetica",FontWeight.BOLD,50));
-        g.fillText("Corona Outbreak",Math.round(canvas.getWidth()  / 2),
-                Math.round(canvas.getLayoutY()+100));
+        g.drawImage(coronaOutbreak, 0, 0);
+//        g.setFill(Color.BLACK);
+//        g.fillRect(0, 0, canvasWidth, canvasHeight);
+//        g.drawImage(coronaOutbreak, 0, 0);
+//        g.setFill(Color.WHITE);
+//        g.setTextAlign(TextAlignment.CENTER);
+//        g.setTextBaseline(VPos.CENTER);
+//        g.setFont(Font.font( "Helvetica",FontWeight.BOLD,50));
+//        g.fillText("Corona Outbreak",Math.round(canvas.getWidth()  / 2),
+//                Math.round(canvas.getLayoutY()+100));
     }
 
 
-    public void stopGame() {
+    public void pauseGame() {
         this.board.stop();
         timeline.stop();
         g.setFill(Color.RED);
         g.setTextAlign(TextAlignment.CENTER);
         g.setTextBaseline(VPos.CENTER);
         g.setFont(Font.font(40));
-        g.fillText("Game Stopped",Math.round(canvas.getWidth()  / 2),
+        g.fillText("Game paused",Math.round(canvas.getWidth()  / 2),
                 Math.round(canvas.getHeight() / 2));
     }
 
-    public void restartGame() {
-        
+    public void stopGame() {
+        Platform.exit();
+    }
+
+
+    public int getCanvasWidth() {
+        return canvasWidth;
+    }
+
+    public int getCanvasHeight() {
+        return canvasHeight;
     }
 
 }

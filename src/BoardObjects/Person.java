@@ -21,7 +21,7 @@ public class Person {
         this.sick = b == 1 ? true : false;
         this.outside = true;
 
-        this.speed = 2;
+        this.speed = 3;
         this.direction = chance.nextInt() % 360;
     }
 
@@ -46,7 +46,6 @@ public class Person {
 
         if (this.x < 0) {
             this.x = 0;
-
             this.direction = 360 - this.direction;
         }
 
@@ -55,21 +54,18 @@ public class Person {
 
             this.direction = 360 - this.direction;
         }
+
         if (this.y - this.height < 0) {
             this.y = this.height;
 
             this.direction = 180 - this.direction;
-            if (this.direction < 0) {
-                this.direction = 360 + this.direction;
-            }
+            this.direction %= 360;
         }
         if (this.y > maxY) {
             this.y = maxY;
 
             this.direction = 180 - this.direction;
-            if (this.direction < 0) {
-                this.direction = 360 + this.direction;
-            }
+            this.direction %= 360;
         }
 
     }
@@ -82,13 +78,11 @@ public class Person {
     public void reflect(Collidable c) {
         //unten
         if (c.getY() < this.y) {
-            this.direction = 270 - this.direction;
-            if (this.direction < 0) {
-                this.direction = 360 + this.direction;
-            }
+            this.direction = 180 - this.direction;
+            this.direction %= 360;
         }
         if(c.getY()+c.getHeight()>this.y+this.getHeight()){
-            this.direction = 270 - this.direction;
+            this.direction = 360 - this.direction;
             if (this.direction < 0) {
                 this.direction = 360 + this.direction;
             }

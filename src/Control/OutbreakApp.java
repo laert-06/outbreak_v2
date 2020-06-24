@@ -12,7 +12,7 @@ public class OutbreakApp extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         GameUI ui = new GameUI();
-        Scene scene= new Scene(ui,600,820);
+        Scene scene= new Scene(ui,ui.getCanvasWidth(),ui.getCanvasHeight());
         primaryStage.setScene(scene);
         primaryStage.show();
         ui.drawStart();
@@ -32,10 +32,6 @@ public class OutbreakApp extends Application {
 //        System.out.println(chance2.nextInt());
 //        Random chance3 = new Random();
 //        System.out.println(chance3.nextInt());
-    }
-
-    public static void restart() {
-
     }
 
 }

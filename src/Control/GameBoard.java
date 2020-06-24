@@ -4,6 +4,7 @@ import BoardObjects.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameBoard {
 
@@ -16,7 +17,7 @@ public class GameBoard {
 
 
     public GameBoard() {
-        this.user = new Paddle(200, 800);
+        this.user = new Paddle((GameUI.canvasWidth - 200) / 2, 780);
         isRunning = false;
         buildings = new ArrayList<>();
         persons =new ArrayList<>();
@@ -30,21 +31,20 @@ public class GameBoard {
     }
 
     public void addBuildings() {
-        for (int i = 0; i < 6; i++) {
-            buildings.add(new Home(i * 100 + 30, 200, MedicalHeight, MedicalHeight));
-        }
         for (double i = 0.5; i < 5; i++) {
-            buildings.add(new MedicalFacility((int) (i * 100 + 30), 100, ApartmentWidth, ApartmentWidth));
+            buildings.add(new MedicalFacility((int) (i * 140 + 35), 100, ApartmentWidth, ApartmentWidth));
+        }
+        for (int i = 0; i < 6; i++) {
+            buildings.add(new Home(i * 140 + 35, 200, MedicalHeight, MedicalHeight));
         }
     }
 
 
     public void addPersons(){
         for (int i = 0; i < 20; i++) {
-            persons.add(new Person(300, 400, i % 2));
+            persons.add(new Person(300, 400, new Random().nextInt() % 2));
         }
     }
-
 
     public void update(int maxX,int maxY){
         for (Person p:persons) {

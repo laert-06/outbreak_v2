@@ -7,15 +7,15 @@ public class Toolbar extends ToolBar {
 
     public Toolbar(GameUI ui){
         Button start;
-        Button stop;
-        Button restart;
+        Button pause;
+        Button quit;
         start = new Button("Start");
         start.setOnAction(e -> ui.startGame());
-        stop = new Button("Stop");
-        stop.setOnAction(e -> ui.stopGame());
-        restart = new Button("Restart");
-        restart.setOnAction(e -> ui.restartGame());
+        pause = new Button("Pause");
+        pause.setOnAction(e -> ui.pauseGame());
+        quit = new Button("Quit");
+        quit.setOnAction(e -> ui.stopGame());
 
-        this.getItems().addAll(start,stop, restart);
+        this.getItems().addAll(start, pause, quit);
     }
 }
