@@ -1,11 +1,11 @@
-package Control;
+package GameView;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 
 public class Toolbar extends ToolBar {
 
-    public Toolbar(GameUI ui){
+    public Toolbar(GameBoardUI ui){
         Button start;
         Button pause;
         Button restart;

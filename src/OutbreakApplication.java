@@ -1,17 +1,14 @@
-package Control;
-
+import GameView.GameBoardUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Random;
-
-public class OutbreakApp extends Application {
+public class OutbreakApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        GameUI ui = new GameUI();
+        GameBoardUI ui = new GameBoardUI();
         Scene scene= new Scene(ui,ui.getCanvasWidth(),ui.getCanvasHeight());
         primaryStage.setScene(scene);
         primaryStage.show();

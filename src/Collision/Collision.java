@@ -1,4 +1,4 @@
-package Control;
+package Collision;
 
 import BoardObjects.Collidable;
 import BoardObjects.Paddle;

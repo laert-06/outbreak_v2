@@ -1,11 +1,11 @@
 package Control;
 
 import BoardObjects.*;
-import javafx.scene.Scene;
+import Collision.Collision;
+import GameView.GameBoardUI;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class GameBoard {
 
@@ -18,7 +18,7 @@ public class GameBoard {
 
 
     public GameBoard() {
-        this.user = new Paddle((GameUI.canvasWidth - 200) / 2, 780);
+        this.user = new Paddle((GameBoardUI.getCanvasWidth() - 200) / 2, 780);
         isRunning = false;
         buildings = new ArrayList<>();
         persons =new ArrayList<>();

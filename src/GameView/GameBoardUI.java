@@ -1,7 +1,8 @@
-package Control;
+package GameView;
 
 
 import BoardObjects.*;
+import Control.GameBoard;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -15,15 +16,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 
-public class GameUI extends VBox {
+public class GameBoardUI extends VBox {
 
     private Canvas canvas;
-
     private GraphicsContext g;
     private GameBoard board;
     private Timeline timeline;
@@ -39,7 +38,7 @@ public class GameUI extends VBox {
     Image greyBackground = new Image("file:images/greyBackground.jpeg");
 
 
-    public GameUI() {
+    public GameBoardUI() {
         InfoBar infoBar = new InfoBar();
         Toolbar toolbar = new Toolbar(this);
 
@@ -148,13 +147,12 @@ public class GameUI extends VBox {
         Platform.exit();
     }
 
-    public int getCanvasWidth() {
+    public static int getCanvasWidth() {
         return canvasWidth;
     }
 
-    public int getCanvasHeight() {
+    public static int getCanvasHeight() {
         return canvasHeight;
     }
 
 }
-
