@@ -19,6 +19,9 @@ public class Person implements Collidable {
 
         this.speed = 3;
         this.direction = chance.nextInt() % 360;
+        while (this.direction == 90) {
+            this.direction = chance.nextInt() % 360;
+        }
     }
 
 
@@ -66,10 +69,6 @@ public class Person implements Collidable {
 
     }
 
-    public void setDirection(int x) {
-        this.direction = x;
-
-    }
 
     public void reflect(Collidable c) {
 
@@ -140,5 +139,18 @@ public class Person implements Collidable {
 
     public int getWidth() {
         return width;
+    }
+
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int x) {
+        this.direction = x;
     }
 }

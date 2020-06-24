@@ -23,6 +23,7 @@ import javafx.util.Duration;
 public class GameUI extends VBox {
 
     private Canvas canvas;
+
     private GraphicsContext g;
     private GameBoard board;
     private Timeline timeline;
@@ -138,7 +139,9 @@ public class GameUI extends VBox {
     }
 
     public void restartGame() {
-        board.reset();
+        pauseGame();
+        g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawStart();
     }
 
     public void quitGame() {

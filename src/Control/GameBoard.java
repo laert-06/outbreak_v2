@@ -50,6 +50,9 @@ public class GameBoard {
     public void update(int maxX,int maxY){
         for (Person p:persons) {
             p.move(maxX,maxY);
+//            if (p.getDirection() == 90) {
+//                p.setDirection(135);
+//            }
         }
 
         for (Person x:persons) {
@@ -100,12 +103,5 @@ public class GameBoard {
 
     public Boolean isRunning() {
         return isRunning;
-    }
-
-    public void reset() {
-        isRunning = false;
-        GameUI ui = new GameUI();
-        Scene scene= new Scene(ui,ui.getCanvasWidth(),ui.getCanvasHeight());
-        ui.startGame();
     }
 }
