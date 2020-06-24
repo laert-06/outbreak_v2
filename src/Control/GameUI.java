@@ -1,10 +1,7 @@
 package Control;
 
 
-import BoardObjects.Home;
-import BoardObjects.Building;
-import BoardObjects.Paddle;
-import BoardObjects.Person;
+import BoardObjects.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -38,6 +35,7 @@ public class GameUI extends VBox {
     Image healthyPerson = new Image("file:images/healthyPerson.png");
     Image infectedPerson = new Image("file:images/infectedPerson.png");
     Image coronaOutbreak = new Image("file:images/coronaOutbreak.jpeg");
+    Image greyBackground = new Image("file:images/greyBackground.jpeg");
 
 
     public GameUI() {
@@ -80,8 +78,7 @@ public class GameUI extends VBox {
 
 
     public void draw() {
-        g.setFill(Color.BLACK);
-        g.fillRect(0, 0, canvasWidth, canvasHeight);
+        g.drawImage(greyBackground, 0, 0);
         drawPaddle();
         drawBuilding();
         drawPerson();
@@ -98,7 +95,7 @@ public class GameUI extends VBox {
     public void drawBuilding() {
         for (Building b : board.getBuildings()) {
             if (b instanceof Home) g.drawImage(home, b.getX(), b.getY());
-            else g.drawImage(medicalFacility, b.getX(), b.getY());
+            else  g.drawImage(medicalFacility, b.getX(), b.getY());
         }
 
     }
@@ -125,7 +122,7 @@ public class GameUI extends VBox {
 //        g.setTextBaseline(VPos.CENTER);
 //        g.setFont(Font.font( "Helvetica",FontWeight.BOLD,50));
 //        g.fillText("Corona Outbreak",Math.round(canvas.getWidth()  / 2),
-//                Math.round(canvas.getLayoutY()+100));
+//        Math.round(canvas.getLayoutY()+100));
     }
 
 
@@ -140,10 +137,13 @@ public class GameUI extends VBox {
                 Math.round(canvas.getHeight() / 2));
     }
 
-    public void stopGame() {
-        Platform.exit();
+    public void restartGame() {
+        board.reset();
     }
 
+    public void quitGame() {
+        Platform.exit();
+    }
 
     public int getCanvasWidth() {
         return canvasWidth;

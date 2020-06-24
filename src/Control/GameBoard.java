@@ -1,6 +1,7 @@
 package Control;
 
 import BoardObjects.*;
+import javafx.scene.Scene;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,10 @@ public class GameBoard {
         buildings = new ArrayList<>();
         persons =new ArrayList<>();
 
-        ApartmentHeight = 30;
-        ApartmentWidth = 30;
-        MedicalHeight = 30;
-        MedicalWidth = 30;
+        ApartmentHeight = 70;
+        ApartmentWidth = 70;
+        MedicalHeight = 70;
+        MedicalWidth = 70;
         addBuildings();
         addPersons();
     }
@@ -35,14 +36,14 @@ public class GameBoard {
             buildings.add(new MedicalFacility((int) (i * 140 + 35), 100, ApartmentWidth, ApartmentWidth));
         }
         for (int i = 0; i < 6; i++) {
-            buildings.add(new Home(i * 140 + 35, 200, MedicalHeight, MedicalHeight));
+            buildings.add(new Home(i * 140 + 35, 150, MedicalHeight, MedicalHeight));
         }
     }
 
 
     public void addPersons(){
-        for (int i = 0; i < 20; i++) {
-            persons.add(new Person(300, 400, new Random().nextInt() % 2));
+        for (int i = 0; i < 10; i++) {
+            persons.add(new Person(i*30 + 200, 400));
         }
     }
 
@@ -59,6 +60,12 @@ public class GameBoard {
                if(collision.isCollision()) {
                    b.evaluate(x);
                }
+            }
+            for(Person p: persons){
+                Collision collision=new Collision(p,x);
+                if(collision.isCollision()) {
+                    p.evaluate(x);
+                }
             }
             Collision collision=new Collision(user,x);
             if(collision.isCollision()) {
@@ -93,5 +100,12 @@ public class GameBoard {
 
     public Boolean isRunning() {
         return isRunning;
+    }
+
+    public void reset() {
+        isRunning = false;
+        GameUI ui = new GameUI();
+        Scene scene= new Scene(ui,ui.getCanvasWidth(),ui.getCanvasHeight());
+        ui.startGame();
     }
 }

@@ -7,7 +7,7 @@ public class Home extends Building {
 
     @Override
     public void evaluate(Person person) {
-
+        person.reflect(this);
     }
 
 }

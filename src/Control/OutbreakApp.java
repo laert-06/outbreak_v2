@@ -9,7 +9,7 @@ import java.util.Random;
 public class OutbreakApp extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         GameUI ui = new GameUI();
         Scene scene= new Scene(ui,ui.getCanvasWidth(),ui.getCanvasHeight());

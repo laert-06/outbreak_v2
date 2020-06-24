@@ -2,23 +2,19 @@ package BoardObjects;
 
 import java.util.Random;
 
-public class Person {
+public class Person implements Collidable {
 
     private int x, y, height, width, direction, speed;
     private boolean sick, outside;
 
-
-    public Person(int x, int y, int b) {
+    public Person(int x, int y) {
         this.x = x;
         this.y = y;
         this.height = 10;
         this.width = 10;
         Random chance = new Random();
-//        chance.ints(0, 100);
-//
-//        if (chance.nextInt() > 30) this.sick = true;
-//        else this.sick = false;
-        this.sick = b == 1 ? true : false;
+        chance.ints(0, 100);
+        this.sick = chance.nextInt() > 20 ? false :  true;
         this.outside = true;
 
         this.speed = 3;
@@ -76,13 +72,26 @@ public class Person {
     }
 
     public void reflect(Collidable c) {
+
+        if (c instanceof MedicalFacility && this.sick == true) {
+            this.speed = 0;
+            this.sick = false;
+            this.speed = 3;
+            return;
+        }
+        if (c instanceof Home && this.sick == false) {
+            this.speed = 0;
+            this.sick = true;
+            this.speed = 3;
+            return;
+        }
         //unten
         if (c.getY() < this.y) {
             this.direction = 180 - this.direction;
             this.direction %= 360;
         }
         if(c.getY()+c.getHeight()>this.y+this.getHeight()){
-            this.direction = 360 - this.direction;
+            this.direction = 135 - this.direction;
             if (this.direction < 0) {
                 this.direction = 360 + this.direction;
             }
@@ -93,6 +102,19 @@ public class Person {
         if(c.getX()+c.getWidth()>this.getX()){
             this.direction = 360 - this.direction;
         }
+    }
+
+    public void reflect(Person c1, Person c2) {
+        if (c1.sick == true || c2.sick == true) {
+            c1.sick = true;
+            c2.sick = true;
+            return;
+        }
+    }
+
+    @Override
+    public void evaluate(Person person) {
+        person.reflect(this, person);
     }
 
 

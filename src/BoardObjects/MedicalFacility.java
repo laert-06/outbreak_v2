@@ -9,6 +9,6 @@ public class MedicalFacility extends Building {
 
     @Override
     public void evaluate(Person person) {
-
+        person.reflect(this);
     }
 }
