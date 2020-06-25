@@ -50,9 +50,9 @@ public class GameBoard {
     public void update(int maxX,int maxY){
         for (Person p:persons) {
             p.move(maxX,maxY);
-//            if (p.getDirection() == 90) {
-//                p.setDirection(135);
-//            }
+            if (p.getDirection() % 90 == 0) {
+                p.setDirection(p.getDirection() + 45);
+            }
         }
 
         for (Person x:persons) {

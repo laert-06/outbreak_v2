@@ -45,25 +45,25 @@ public class Person implements Collidable {
 
         if (this.x < 0) {
             this.x = 0;
-            this.direction = 360 - this.direction;
+            this.direction = 370 - this.direction;
         }
 
         if (this.x + this.width > maxX) {
             this.x = maxX - this.width;
 
-            this.direction = 360 - this.direction;
+            this.direction = 370 - this.direction;
         }
 
         if (this.y - this.height < 0) {
             this.y = this.height;
 
-            this.direction = 180 - this.direction;
+            this.direction = 190 - this.direction;
             this.direction %= 360;
         }
         if (this.y > maxY) {
             this.y = maxY;
 
-            this.direction = 180 - this.direction;
+            this.direction = 190 - this.direction;
             this.direction %= 360;
         }
 
@@ -116,7 +116,6 @@ public class Person implements Collidable {
         person.reflect(this, person);
     }
 
-
     public void setSick(boolean sick) {
         this.sick = sick;
     }
@@ -141,7 +140,6 @@ public class Person implements Collidable {
         return width;
     }
 
-
     public int getSpeed() {
         return speed;
     }
@@ -153,4 +151,5 @@ public class Person implements Collidable {
     public void setDirection(int x) {
         this.direction = x;
     }
+
 }
